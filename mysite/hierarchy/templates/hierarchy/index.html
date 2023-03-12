@@ -1,0 +1,20 @@
+<form action="{% url 'hierarchy:adddept' %}" method="post">
+{% csrf_token %}
+<label for="dept_name">Enter name: </label>
+  <input
+    id="dept_name"
+    type="text"
+    name="dept_name"
+    value="Depatment name" />
+  <input type="submit" value="OK" />
+</form>
+
+{% if depts %}
+    <ul>
+    {% for dept in depts %}
+        <li><a href="{% url 'hierarchy:departmentdetail' dept.id %}">{{ dept.dept_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Depts are available.</p>
+{% endif %}
